@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">bluebuddy</string>
+    <string name="bluetooth_diagnostic_tool">Bluetooth Diagnostic Tool</string>
+    <string name="connect">Connect</string>
+    <string name="record">Record</string>
+    <string name="poll">Poll</string>
+</resources>
