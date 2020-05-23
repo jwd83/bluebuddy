@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:autofillHints=""
     android:layout_height="match_parent"
-    android:paddingLeft="16sp"
-    android:paddingRight="16sp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:autofillHints=""
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="@string/bluetooth_diagnostic_tool"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        />
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bluetooth_diagnostic_tool"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+    <Button
+        android:id="@+id/buttonListDevices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/list_devices" />
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/connect" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/connect" />
 
-        <Switch
-            android:id="@+id/switch2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/record" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-        <Switch
-            android:id="@+id/switch3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/poll" />
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/record" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/poll" />
 
-        <TextView
-            android:id="@+id/textViewStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status: Idle" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.core.widget.NestedScrollView>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/status_idle" />
+</androidx.appcompat.widget.LinearLayoutCompat>

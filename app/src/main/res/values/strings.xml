@@ -4,4 +4,6 @@
     <string name="connect">Connect</string>
     <string name="record">Record</string>
     <string name="poll">Poll</string>
+    <string name="list_devices">List Devices</string>
+    <string name="status_idle">Status: Idle</string>
 </resources>
