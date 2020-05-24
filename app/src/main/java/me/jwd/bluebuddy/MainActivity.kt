@@ -15,37 +15,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
-
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-//
-//        var b: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-//        var t: BluetoothProfile
-//
-//        buttonListDevices.setOnClickListener {
-//            var txt = "Checking default adapter\n\n"
-//
-//            if(b.isEnabled) {
-//                txt += "Enabled"
-//            } else {
-//                txt += "Disabled"
-//            }
-//
-////
-////            var txt: String = "Connected devices...\n"
-////            txt += "\n"
-//////            var lst = BluetoothProfile
-////            t = b.
-////            t.connectedDevices.forEach(
-////                it.
-////            )
-//
-//            textViewStatus.text = txt
-//        }
         return super.onCreateView(name, context, attrs)
     }
 
