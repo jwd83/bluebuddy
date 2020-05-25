@@ -1,5 +1,6 @@
 package me.jwd.bluebuddy
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
@@ -12,6 +13,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.control_layout.*
 import java.util.*
+import org.jetbrains.anko.toast
+
 
 class ControlActivity: AppCompatActivity() {
 
@@ -81,6 +84,9 @@ class ControlActivity: AppCompatActivity() {
         override fun doInBackground(vararg params: Void?): String? {
 //            TODO("Not yet implemented")
             try {
+                /**
+                 * create / establish connection
+                 */
                 if(m_bluetoothSocket == null || !m_isConnected) {
                     m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
                     val device: BluetoothDevice = m_bluetoothAdapter.getRemoteDevice(m_address)
@@ -88,6 +94,18 @@ class ControlActivity: AppCompatActivity() {
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
                     m_bluetoothSocket!!.connect()
                 }
+//
+//                /**
+//                 * check for data
+//                 */
+//                if(m_bluetoothSocket != null) {
+//                    var b: ByteArray = ByteArray(8192)
+//                    m_bluetoothSocket!!.inputStream.read(b)
+//                    var s = b.toString()
+//                    Log.i("data", "received data len ${s.length}: ${s}")
+//
+//                }
+
             } catch (e: Throwable) {
                 connectSuccess = false
                 e.printStackTrace()
@@ -106,6 +124,13 @@ class ControlActivity: AppCompatActivity() {
                 Log.i("data", "could not connect")
             } else {
                 m_isConnected = true
+            }
+            if(m_progress.ownerActivity != null) {
+                if(m_isConnected) {
+                    m_progress.ownerActivity!!.toast("Connected!")
+                } else {
+                    m_progress.ownerActivity!!.toast("Could not connect.\n\nPlease hang up and try again.")
+                }
             }
             m_progress.dismiss()
         }
