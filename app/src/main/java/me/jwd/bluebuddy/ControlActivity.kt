@@ -49,6 +49,12 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
         control_disconnect.setOnClickListener {
             disconnect()
         }
+
+        control_receive.setOnClickListener {
+            /**
+             * see if we can get data from here
+             */
+        }
     }
 
     private fun sendCommand(input: String) {
