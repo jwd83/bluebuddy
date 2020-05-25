@@ -6,4 +6,7 @@
     <string name="poll">Poll</string>
     <string name="list_devices">List Devices</string>
     <string name="status_idle">Status: Idle</string>
+    <string name="led_on">LED On</string>
+    <string name="led_off">LED Off</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

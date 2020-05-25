@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pairedDeviceList() {
-        toast("Generating paired device list")
+        textViewStatus.text = "Generating paired device list..."
 
         /**
          * look for bonded devices
@@ -103,6 +103,8 @@ class MainActivity : AppCompatActivity() {
 //        toast("Paired devices count: ${list.size}")
         textViewStatus.text = "Found ${list.size} device(s)."
     }
+
+
 
     /**
      * for when we go to enable bluetooth and come back

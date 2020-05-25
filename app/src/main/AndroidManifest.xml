@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ControlActivity" />
+        <activity android:name=".ControlActivity"
+            android:screenOrientation="portrait"
+            />
 
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"

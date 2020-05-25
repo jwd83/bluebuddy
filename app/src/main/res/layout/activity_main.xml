@@ -30,35 +30,6 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/connect" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/record" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/poll" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
     <TextView
         android:id="@+id/textViewStatus"
         android:layout_width="wrap_content"
@@ -73,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/select_device_list"
-        >
+        />
 
-    </ListView>
 </androidx.appcompat.widget.LinearLayoutCompat>
