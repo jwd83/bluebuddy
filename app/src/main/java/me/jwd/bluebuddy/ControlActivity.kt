@@ -12,11 +12,13 @@ import android.os.PersistableBundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.control_layout.*
+import org.jetbrains.anko.doAsyncResult
 import java.util.*
 import org.jetbrains.anko.toast
+import kotlin.reflect.typeOf
 
 
-class ControlActivity: AppCompatActivity() {
+class ControlActivity: AppCompatActivity(), AsyncResponse {
 
     companion object {
         var m_myUUID: UUID = UUID.fromString("cfde2417-b4de-4727-9b30-788261fedfaf")
@@ -33,7 +35,7 @@ class ControlActivity: AppCompatActivity() {
         setContentView(R.layout.control_layout)
         m_address = intent.getStringExtra(MainActivity.EXTRA_ADDRESS)
 
-        ConnectToDevice(this).execute()
+        ConnectToDevice(this, this).execute()
 
         control_led_on.setOnClickListener {
             sendCommand("a")
@@ -72,13 +74,15 @@ class ControlActivity: AppCompatActivity() {
         finish()
     }
 
-    private class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
+    private class ConnectToDevice(c: Context, r: AsyncResponse) : AsyncTask<Void, Void, String>() {
 
         private var connectSuccess: Boolean = true
         private val context: Context
+        lateinit var ar: AsyncResponse
 
         init {
             this.context = c
+            ar = r
         }
 
         override fun doInBackground(vararg params: Void?): String? {
@@ -125,14 +129,20 @@ class ControlActivity: AppCompatActivity() {
             } else {
                 m_isConnected = true
             }
-            if(m_progress.ownerActivity != null) {
-                if(m_isConnected) {
-                    m_progress.ownerActivity!!.toast("Connected!")
-                } else {
-                    m_progress.ownerActivity!!.toast("Could not connect.\n\nPlease hang up and try again.")
-                }
-            }
+//            if(m_progress.ownerActivity != null) {
+//            }
             m_progress.dismiss()
+
+            if(m_isConnected) {
+                ar.response("Connected!")
+            } else {
+                ar.response("Could not connect.\n\nPlease hang up and try again.")
+            }
         }
+    }
+
+    override fun response(output: String) {
+        toast(output)
+        finish()
     }
 }
