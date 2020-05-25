@@ -93,10 +93,15 @@ class MainActivity : AppCompatActivity() {
             val device: BluetoothDevice = list[position]
             val mac_address: String = device.address
 
+            toast(mac_address + " (" + device.name +")")
+
             val intent = Intent(this, ControlActivity::class.java)
             intent.putExtra(EXTRA_ADDRESS, mac_address)
             startActivity(intent)
         }
+
+//        toast("Paired devices count: ${list.size}")
+        textViewStatus.text = "Found ${list.size} device(s)."
     }
 
     /**

@@ -10,12 +10,20 @@
         android:text="LED On"
         />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20sp" />
+
     <Button
         android:id="@+id/control_led_off"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LED Off"
         />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20sp" />
 
     <Button
         android:id="@+id/control_disconnect"
