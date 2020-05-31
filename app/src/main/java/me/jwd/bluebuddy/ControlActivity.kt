@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.control_layout.*
 import org.jetbrains.anko.doAsyncResult
 import java.util.*
 import org.jetbrains.anko.toast
+import java.io.IOException
 import kotlin.reflect.typeOf
 
 
@@ -54,6 +55,9 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
             /**
              * see if we can get data from here
              */
+            if(m_bluetoothSocket != null) {
+                toast(m_bluetoothSocket!!.inputStream.toString())
+            }
         }
     }
 
@@ -83,13 +87,8 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
     private class ConnectToDevice(c: Context, r: AsyncResponse) : AsyncTask<Void, Void, String>() {
 
         private var connectSuccess: Boolean = true
-        private val context: Context
-        lateinit var ar: AsyncResponse
-
-        init {
-            this.context = c
-            ar = r
-        }
+        private val context: Context = c
+        private val ar: AsyncResponse = r
 
         override fun doInBackground(vararg params: Void?): String? {
 //            TODO("Not yet implemented")
@@ -98,6 +97,7 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
                  * create / establish connection
                  */
                 if(m_bluetoothSocket == null || !m_isConnected) {
+                    Log.i("data","Connecting to $m_address")
                     m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
                     val device: BluetoothDevice = m_bluetoothAdapter.getRemoteDevice(m_address)
                     m_bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(m_myUUID)
@@ -116,7 +116,9 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 //
 //                }
 
-            } catch (e: Throwable) {
+            } catch (e: IOException) {
+                Log.i("data", "Catch: \n" + e.cause.toString() + "\n\n" + e.message.toString())
+//                ar.response(, false)
                 connectSuccess = false
                 e.printStackTrace()
             }
@@ -135,20 +137,19 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
             } else {
                 m_isConnected = true
             }
-//            if(m_progress.ownerActivity != null) {
-//            }
+
             m_progress.dismiss()
 
             if(m_isConnected) {
-                ar.response("Connected!")
+                ar.response("Connected!", false)
             } else {
-                ar.response("Could not connect.\n\nPlease hang up and try again.")
+                ar.response("Could not connect.\n\nPlease hang up and try again.", true)
             }
         }
     }
 
-    override fun response(output: String) {
+    override fun response(output: String, exit: Boolean) {
         toast(output)
-        finish()
+        if(exit) finish()
     }
 }
