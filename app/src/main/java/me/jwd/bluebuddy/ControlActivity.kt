@@ -22,7 +22,9 @@ import kotlin.reflect.typeOf
 class ControlActivity: AppCompatActivity(), AsyncResponse {
 
     companion object {
-        var m_myUUID: UUID = UUID.fromString("cfde2417-b4de-4727-9b30-788261fedfaf")
+        // 00001101-0000-1000-8000-00805F9B34FB // Standard SerialPortService ID
+        // cfde2417-b4de-4727-9b30-788261fedfaf // generated (not working)
+        var m_myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         var m_bluetoothSocket: BluetoothSocket? = null
         lateinit var m_progress: ProgressDialog
         lateinit var m_bluetoothAdapter: BluetoothAdapter
@@ -44,7 +46,7 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
         }
 
         control_led_off.setOnClickListener {
-            sendCommand("b")
+            sendCommand("v")
         }
 
         control_disconnect.setOnClickListener {
@@ -56,7 +58,10 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
              * see if we can get data from here
              */
             if(m_bluetoothSocket != null) {
-                toast(m_bluetoothSocket!!.inputStream.toString())
+                val instream = m_bluetoothSocket!!.inputStream
+                if (instream.available() > 0) {
+                    toast(instream.read().toString())
+                }
             }
         }
     }
