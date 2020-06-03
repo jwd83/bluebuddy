@@ -59,9 +59,9 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
              */
             if(m_bluetoothSocket != null) {
                 val instream = m_bluetoothSocket!!.inputStream
-                if (instream.available() > 0) {
-                    toast(instream.read().toString())
-                }
+                toast("Available: ${instream.available()}")
+//                if (instream.available() > 0) {
+//                }
             }
         }
     }
