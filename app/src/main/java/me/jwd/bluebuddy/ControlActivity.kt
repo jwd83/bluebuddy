@@ -58,10 +58,18 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
              * see if we can get data from here
              */
             if(m_bluetoothSocket != null) {
-                val instream = m_bluetoothSocket!!.inputStream
-                toast("Available: ${instream.available()}")
-//                if (instream.available() > 0) {
-//                }
+                val stream = m_bluetoothSocket!!.inputStream
+                val available = stream.available()
+                val bytes = ByteArray(available)
+
+                if (available > 0) {
+                    stream.read(bytes, 0, available)
+                    val str = String(bytes)
+                    toast("Available: ${available}\nDATA:\n$str")
+
+                } else {
+                    toast("Empty")
+                }
             }
         }
     }
