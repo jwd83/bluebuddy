@@ -30,6 +30,7 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
         lateinit var m_bluetoothAdapter: BluetoothAdapter
         var m_isConnected: Boolean = false
         lateinit var m_address: String
+        var m_inputBuffer: String = ""
     }
 
 
@@ -60,9 +61,9 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
             if(m_bluetoothSocket != null) {
                 val stream = m_bluetoothSocket!!.inputStream
                 val available = stream.available()
-                val bytes = ByteArray(available)
-
+                // check if data is available
                 if (available > 0) {
+                    val bytes = ByteArray(available)
                     stream.read(bytes, 0, available)
                     val str = String(bytes)
                     toast("Available: ${available}\nDATA:\n$str")
@@ -155,6 +156,8 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 
             if(m_isConnected) {
                 ar.response("Connected!", false)
+
+                // start thread to sample values that calls the UI thread to update values
             } else {
                 ar.response("Could not connect.\n\nPlease hang up and try again.", true)
             }
