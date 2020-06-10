@@ -66,12 +66,21 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
                     val bytes = ByteArray(available)
                     stream.read(bytes, 0, available)
                     val str = String(bytes)
-                    toast("Available: ${available}\nDATA:\n$str")
-
+//                    toast("Available: ${available}\nDATA:\n$str")
+                    receiveCommand(str)
                 } else {
                     toast("Empty")
                 }
             }
+        }
+    }
+
+    private fun receiveCommand(input: String) {
+        if(input.contains(':') && input.contains("\n")) {
+            toast("Potentially valid response")
+
+        } else {
+            toast("Rejected command")
         }
     }
 
