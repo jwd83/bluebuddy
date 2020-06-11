@@ -41,6 +41,14 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 
         ConnectToDevice(this, this).execute()
 
+        buttonSetDAC1.setOnClickListener {
+            sendCommand("$1128")
+        }
+
+        buttonSetDAC2.setOnClickListener {
+            sendCommand("$2128")
+        }
+
         control_led_on.setOnClickListener {
             sendCommand("a")
         }
