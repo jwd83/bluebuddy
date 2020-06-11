@@ -76,11 +76,22 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
     }
 
     private fun receiveCommand(input: String) {
-        if(input.contains(':') && input.contains("\n")) {
-            toast("Potentially valid response")
+        var validCommand: Boolean = false
+        val hasColon: Boolean = input.contains(':')
+        val hasBreak: Boolean = input.contains("\n")
 
-        } else {
-            toast("Rejected command")
+        if(hasColon && hasBreak) {
+            val parts = input.split(":")
+
+            if (parts.count() == 2) {
+
+                validCommand = true
+                toast("Command: ${parts[0]}\nData: ${parts[1]}")
+            }
+        }
+
+        if(!validCommand){
+            toast("Rejected command: ${input}")
         }
     }
 
