@@ -43,7 +43,6 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 
         control_led_on.setOnClickListener {
             sendCommand("a")
-
         }
 
         control_led_off.setOnClickListener {
@@ -82,11 +81,40 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 
         if(hasColon && hasBreak) {
             val parts = input.split(":")
-
             if (parts.count() == 2) {
-
                 validCommand = true
-                toast("Command: ${parts[0]}\nData: ${parts[1]}")
+                var values = parts[1].trim().split(",")
+
+                when(parts[0]) {
+                    "a", "A", "v", "V" -> {
+                        var suffix = if (parts[0].toUpperCase() == "A") {
+                            " ADC"
+                        } else {
+                            " Volts"
+                        }
+                        if(values.count() == 6) {
+                            text_analog_voltage_1.text = values[0] + suffix
+                            text_analog_voltage_2.text = values[1] + suffix
+                            text_analog_voltage_3.text = values[2] + suffix
+                            text_analog_voltage_4.text = values[3] + suffix
+                            text_analog_voltage_5.text = values[4] + suffix
+                            text_analog_voltage_6.text = values[5] + suffix
+                        }
+                    }
+//                    "v" -> {
+//                        if(values.count() == 6) {
+//                            text_analog_voltage_1.text = values[0]
+//                            text_analog_voltage_2.text = values[1]
+//                            text_analog_voltage_3.text = values[2]
+//                            text_analog_voltage_4.text = values[3]
+//                            text_analog_voltage_5.text = values[4]
+//                            text_analog_voltage_6.text = values[5]
+//                        }
+//                    }
+                    else -> {
+                        toast("Unrecognized command: ${parts[0]}\nData: ${parts[1]}")
+                    }
+                }
             }
         }
 
