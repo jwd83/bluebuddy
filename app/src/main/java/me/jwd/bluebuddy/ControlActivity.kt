@@ -117,8 +117,11 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 
                     "DAC" -> {
                         if(values.count() == 2) {
-                            if(values[0] == "1") editTextDAC1.setText(values[1])
-                            if(values[0] == "2") editTextDAC1.setText(values[1])
+
+                            val voltageSet: String  = "%.2f".format(values[1].toDouble() / 255.0 * 3.3)
+
+                            if(values[0] == "1") editTextDAC1.setText(voltageSet)
+                            if(values[0] == "2") editTextDAC1.setText(voltageSet)
                         }
                     }
 //                    "v" -> {
