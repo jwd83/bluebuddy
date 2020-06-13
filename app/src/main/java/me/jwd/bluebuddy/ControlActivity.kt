@@ -42,11 +42,11 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
         ConnectToDevice(this, this).execute()
 
         buttonSetDAC1.setOnClickListener {
-            sendCommand("$1128")
+            sendCommand("$1" + computeDACValue(editTextDAC1.text.toString().toDouble()))
         }
 
         buttonSetDAC2.setOnClickListener {
-            sendCommand("$2128")
+            sendCommand("$2" + computeDACValue(editTextDAC2.text.toString().toDouble()))
         }
 
         control_led_on.setOnClickListener {
@@ -82,6 +82,11 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
         }
     }
 
+    private fun computeDACValue(voltage: Double): String {
+        val DACOutInt: Int = (voltage.coerceIn(0.0, 3.3) / 3.3 * 255).toInt().coerceIn(0, 255)
+        return DACOutInt.toString().padStart(3, '0')
+    }
+
     private fun receiveCommand(input: String) {
         var validCommand: Boolean = false
         val hasColon: Boolean = input.contains(':')
@@ -95,18 +100,25 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
 
                 when(parts[0]) {
                     "a", "A", "v", "V" -> {
-                        var suffix = if (parts[0].toUpperCase() == "A") {
-                            " ADC"
-                        } else {
-                            " Volts"
-                        }
                         if(values.count() == 6) {
+                            var suffix = if (parts[0].toUpperCase() == "A") {
+                                " ADC"
+                            } else {
+                                " Volts"
+                            }
                             text_analog_voltage_1.text = values[0] + suffix
                             text_analog_voltage_2.text = values[1] + suffix
                             text_analog_voltage_3.text = values[2] + suffix
                             text_analog_voltage_4.text = values[3] + suffix
                             text_analog_voltage_5.text = values[4] + suffix
                             text_analog_voltage_6.text = values[5] + suffix
+                        }
+                    }
+
+                    "DAC" -> {
+                        if(values.count() == 2) {
+                            if(values[0] == "1") editTextDAC1.setText(values[1])
+                            if(values[0] == "2") editTextDAC1.setText(values[1])
                         }
                     }
 //                    "v" -> {
