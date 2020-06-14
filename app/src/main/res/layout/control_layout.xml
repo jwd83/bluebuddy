@@ -160,6 +160,14 @@
             android:gravity="end"
             android:text="0.0 Volts" />
 
+        <TextView
+            android:id="@+id/text_analog_adc_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="0" />
+
     </LinearLayout>
 
     <Space
@@ -185,6 +193,13 @@
             android:gravity="end"
             android:text="0.0 Volts" />
 
+        <TextView
+            android:id="@+id/text_analog_adc_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="0" />
     </LinearLayout>
 
     <Space
@@ -211,6 +226,13 @@
             android:gravity="end"
             android:text="0.0 Volts" />
 
+        <TextView
+            android:id="@+id/text_analog_adc_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="0" />
     </LinearLayout>
 
     <Space
@@ -236,6 +258,13 @@
             android:gravity="end"
             android:text="0.0 Volts" />
 
+        <TextView
+            android:id="@+id/text_analog_adc_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="0" />
     </LinearLayout>
 
     <Space
@@ -263,6 +292,13 @@
             android:gravity="end"
             android:text="0.0 Volts" />
 
+        <TextView
+            android:id="@+id/text_analog_adc_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="0" />
     </LinearLayout>
 
     <Space
@@ -288,6 +324,13 @@
             android:gravity="end"
             android:text="0.0 Volts" />
 
+        <TextView
+            android:id="@+id/text_analog_adc_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="0" />
     </LinearLayout>
 
 </LinearLayout>

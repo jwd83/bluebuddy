@@ -124,16 +124,6 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
                             if(values[0] == "2") editTextDAC1.setText(voltageSet)
                         }
                     }
-//                    "v" -> {
-//                        if(values.count() == 6) {
-//                            text_analog_voltage_1.text = values[0]
-//                            text_analog_voltage_2.text = values[1]
-//                            text_analog_voltage_3.text = values[2]
-//                            text_analog_voltage_4.text = values[3]
-//                            text_analog_voltage_5.text = values[4]
-//                            text_analog_voltage_6.text = values[5]
-//                        }
-//                    }
                     else -> {
                         toast("Unrecognized command: ${parts[0]}\nData: ${parts[1]}")
                     }
