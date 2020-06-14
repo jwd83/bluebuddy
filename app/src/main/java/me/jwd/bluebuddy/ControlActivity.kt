@@ -91,6 +91,7 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
         var validCommand: Boolean = false
         val hasColon: Boolean = input.contains(':')
         val hasBreak: Boolean = input.contains("\n")
+        var suffix = ""
 
         if(hasColon && hasBreak) {
             val parts = input.split(":")
@@ -99,13 +100,20 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
                 var values = parts[1].trim().split(",")
 
                 when(parts[0]) {
-                    "a", "A", "v", "V" -> {
+                    "a", "A" -> {
                         if(values.count() == 6) {
-                            var suffix = if (parts[0].toUpperCase() == "A") {
-                                " ADC"
-                            } else {
-                                " Volts"
-                            }
+                            suffix = " ADC"
+                            text_analog_adc_1.text = values[0] + suffix
+                            text_analog_adc_2.text = values[1] + suffix
+                            text_analog_adc_3.text = values[2] + suffix
+                            text_analog_adc_4.text = values[3] + suffix
+                            text_analog_adc_5.text = values[4] + suffix
+                            text_analog_adc_6.text = values[5] + suffix
+                        }
+                    }
+                    "v", "V" -> {
+                        if(values.count() == 6) {
+                            suffix = " Volts"
                             text_analog_voltage_1.text = values[0] + suffix
                             text_analog_voltage_2.text = values[1] + suffix
                             text_analog_voltage_3.text = values[2] + suffix
