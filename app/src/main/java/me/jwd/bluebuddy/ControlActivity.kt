@@ -57,6 +57,15 @@ class ControlActivity: AppCompatActivity(), AsyncResponse {
             sendCommand("v")
         }
 
+        buttonADCpa.setOnClickListener {
+            sendCommand("p")
+        }
+
+        buttonADCpv.setOnClickListener {
+// todo setup this command
+//            sendCommand("????")
+        }
+
         control_disconnect.setOnClickListener {
             disconnect()
         }

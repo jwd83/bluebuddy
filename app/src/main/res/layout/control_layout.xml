@@ -28,7 +28,25 @@
             android:layout_weight="1"
             />
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/buttonADCpa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADC Values v2"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/buttonADCpv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltages v2"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
     <Space
         android:layout_width="match_parent"
         android:layout_height="20sp" />
